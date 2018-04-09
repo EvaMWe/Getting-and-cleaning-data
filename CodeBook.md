@@ -52,21 +52,22 @@ colnames(mergedDF)<- collabel```
 + collabel : character vector containing features, extracted from feature data frame and converted from factor to character
 
 4. All feature columns were removed that did not contain the exact string "mean" or "std". This left 86 feature colums. 
-```resDF <- mergedDF[grep("mean|std", collabel)]```
+```{r}resDF <- mergedDF[grep("mean|std", collabel)]```
 
 5. Activity column was added
 
 + activity_test and activity_train were merged together and assigned to a variable called activity
-```activity <- rbind(activity_test, activity_train)```
+```{r}activity <- rbind(activity_test, activity_train)```
 
 + activity was converted from data frame to vector
-```activity <- as.vector(t(activity))```
+```{r}activity <- as.vector(t(activity))```
 
 + and added as new colum resDF$activity
-```resDF$activity <- activity```
+```{r}resDF$activity <- activity```
 
 + following code block replaces the activity ID with the corresponding activity label
-``` for (i in seq_along(actlabel)) {
+
+```{r}for (i in seq_along(actlabel)) {
   resDF$activity <- gsub(as.character(i),actlabel[i],resDF$activity)
 }```
 
@@ -78,13 +79,14 @@ A tidy data set was created containing the mean of each feature for each subject
 Since there are 30 subjects and 6 activity labels resulting data frame has a total of 180 rows. Each row contains the mean value for each of the 86 features for that subject/activity combination. 
 
     
-```meanDF <- resDF %>%
+```{r}meanDF <- resDF %>%
   group_by(activity, subject) %>%
   summarize_all(mean)```
 
 
 The tidy data set was written as csv file and stored in working directory
-```write.csv(meanDF, file = "analysis_tidy.csv")```
+
+```{r}write.csv(meanDF, file = "analysis_tidy.csv")```
 
 
 

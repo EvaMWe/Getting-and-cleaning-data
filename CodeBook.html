@@ -220,15 +220,16 @@ $(document).ready(function () {
 <li>collabel : character vector containing features, extracted from feature data frame and converted from factor to character</li>
 </ul>
 <ol start="4" style="list-style-type: decimal">
-<li><p>All feature columns were removed that did not contain the exact string “mean” or “std”. This left 86 feature colums. <code>resDF &lt;- mergedDF[grep(&quot;mean|std&quot;, collabel)]</code></p></li>
+<li><p>All feature columns were removed that did not contain the exact string “mean” or “std”. This left 86 feature colums. <code>{r}resDF &lt;- mergedDF[grep(&quot;mean|std&quot;, collabel)]</code></p></li>
 <li><p>Activity column was added</p></li>
 </ol>
 <ul>
-<li><p>activity_test and activity_train were merged together and assigned to a variable called activity <code>activity &lt;- rbind(activity_test, activity_train)</code></p></li>
-<li><p>activity was converted from data frame to vector <code>activity &lt;- as.vector(t(activity))</code></p></li>
-<li><p>and added as new colum resDF<span class="math inline">\(activity ```resDF\)</span>activity &lt;- activity```</p></li>
-<li><p>following code block replaces the activity ID with the corresponding activity label <code>for (i in seq_along(actlabel)) {   resDF$activity &lt;- gsub(as.character(i),actlabel[i],resDF$activity) }</code></p></li>
+<li><p>activity_test and activity_train were merged together and assigned to a variable called activity <code>{r}activity &lt;- rbind(activity_test, activity_train)</code></p></li>
+<li><p>activity was converted from data frame to vector <code>{r}activity &lt;- as.vector(t(activity))</code></p></li>
+<li><p>and added as new colum resDF<span class="math inline">\(activity ```{r}resDF\)</span>activity &lt;- activity```</p></li>
+<li><p>following code block replaces the activity ID with the corresponding activity label</p></li>
 </ul>
+<p><code>{r}for (i in seq_along(actlabel)) {   resDF$activity &lt;- gsub(as.character(i),actlabel[i],resDF$activity) }</code></p>
 <ol start="6" style="list-style-type: decimal">
 <li>Subject ID column was added respectively</li>
 </ol>
@@ -236,8 +237,9 @@ $(document).ready(function () {
 <div id="b-creation-of-a-tidy-data-set" class="section level3">
 <h3>B Creation of a tidy data set</h3>
 <p>A tidy data set was created containing the mean of each feature for each subject and each activity. Since there are 30 subjects and 6 activity labels resulting data frame has a total of 180 rows. Each row contains the mean value for each of the 86 features for that subject/activity combination.</p>
-<p><code>meanDF &lt;- resDF %&gt;%   group_by(activity, subject) %&gt;%   summarize_all(mean)</code></p>
-<p>The tidy data set was written as csv file and stored in working directory <code>write.csv(meanDF, file = &quot;analysis_tidy.csv&quot;)</code></p>
+<p><code>{r}meanDF &lt;- resDF %&gt;%   group_by(activity, subject) %&gt;%   summarize_all(mean)</code></p>
+<p>The tidy data set was written as csv file and stored in working directory</p>
+<p><code>{r}write.csv(meanDF, file = &quot;analysis_tidy.csv&quot;)</code></p>
 </div>
 </div>
 </div>
