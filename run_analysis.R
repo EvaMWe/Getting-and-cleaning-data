@@ -49,6 +49,8 @@ meanDF <- resDF %>%
   group_by(subject, activity) %>%
   summarize_all(mean)
 
+write.csv(meanDF, file = "analysis_tidy.csv")
+
 
 
 
