@@ -75,14 +75,16 @@ colnames(mergedDF)<- collabel```
 ### B Creation of a tidy data set
 
 A tidy data set was created containing the mean of each feature for each subject and each activity. 
-Thus, subject #1 has 6 rows in the tidy data set (one row for each activity), and each row contains the mean value for each of the 86 features for that subject/activity combination. Since there are 30 subjects, there are a total of 180 rows.
-The tidy data set was output to a CSV file.
+Since there are 30 subjects and 6 activity labels resulting data frame has a total of 180 rows. Each row contains the mean value for each of the 86 features for that subject/activity combination. 
+
     
 ```meanDF <- resDF %>%
   group_by(activity, subject) %>%
-  summarize_all(mean)
-```
+  summarize_all(mean)```
 
+
+The tidy data set was written as csv file and stored in working directory
+```write.csv(meanDF, file = "analysis_tidy.csv")```
 
 
 
